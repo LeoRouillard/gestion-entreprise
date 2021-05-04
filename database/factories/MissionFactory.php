@@ -22,7 +22,10 @@ class MissionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'reference' => $this->faker->word(),
+            'title' => $this->faker->text(),
+            'comment' => $this->faker->text(),
+            'deposit' => $this->faker->randomNumber()
         ];
     }
 }

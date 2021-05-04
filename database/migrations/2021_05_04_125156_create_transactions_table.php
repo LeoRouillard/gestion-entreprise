@@ -16,9 +16,9 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->string('source_type');
-            $table->integer('source_id');
+            $table->integer('source_id')->unsigned();
             $table->integer('price');
-            $table->date('paid_at');
+            $table->date('paid_at')->nullable();
             $table->date('created_at');
         });
     }

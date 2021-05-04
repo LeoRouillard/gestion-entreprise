@@ -4,6 +4,12 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+use App\Models\Organisation;
+use App\Models\Mission;
+use App\Models\MissionLine;
+use App\Models\Transaction;
+use App\Models\Contribution;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,10 +19,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Organisation::factory()->create();
-        //\App\Models\Mission::factory()->create();
-        //\App\Models\MissionLine::factory()->create();
-        //\App\Models\Transaction::factory()->create();
-        //\App\Models\Contribution::factory()->create();
+
+        $organisation = Organisation::factory()
+            ->has(
+                Mission::factory()
+                    ->count(3)
+                    ->has(
+                        MissionLine::factory()
+                            ->count(4),
+                        'lines'
+                    )
+               //     ->has(
+                 //       Transaction::factory()
+                  //  )
+            )
+        ->create();
     }
 }

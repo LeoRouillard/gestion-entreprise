@@ -22,12 +22,12 @@ class OrganisationFactory extends Factory
     public function definition()
     {
         return [
-            'slug' => 'tfgt',
-            'name' => 'tt',
-            'email' => 'ttt',
-            'tel' => 'tt',
-            'address' => 'gg',
-            'type' => 'fff'
+            'slug' => $this->faker->unique()->word(),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'tel' => $this->faker->phoneNumber(),
+            'address' => $this->faker->address(),
+            'type' => $this->faker->randomElement(['school', 'government', 'client'])
         ];
     }
 }

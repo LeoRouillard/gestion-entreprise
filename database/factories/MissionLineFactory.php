@@ -22,7 +22,10 @@ class MissionLineFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->text(),
+            'quantity' => $this->faker->randomNumber(),
+            'price' => $this->faker->randomNumber(),
+            'unity' => $this->faker->randomElement(['jours', 'semaines', 'mois', 'ans'])
         ];
     }
 }

@@ -22,6 +22,7 @@ class CreateMissionLinesTable extends Migration
             $table->integer('price');
             $table->string('unity');
             $table->date('created_at');
+            $table->date('updated_at');
         });
     }
 

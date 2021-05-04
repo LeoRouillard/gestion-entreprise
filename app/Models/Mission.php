@@ -16,4 +16,8 @@ class Mission extends Model
     public function lines() {
         return $this->hasMany(MissionLine::class);
     }
+
+    public function transactions() : MorphMany {
+        return $this->morphMany(Transaction::class, 'source');
+    }
 }

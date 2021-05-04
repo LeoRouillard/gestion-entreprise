@@ -21,7 +21,7 @@ class CreateMissionsTable extends Migration
             $table->string('title');
             $table->string('comment')->nullable();
             $table->integer('deposit');
-            $table->date('ended_at');
+            $table->date('ended_at')->nullable();
             $table->date('created_at');
             $table->date('updated_at');
         });
