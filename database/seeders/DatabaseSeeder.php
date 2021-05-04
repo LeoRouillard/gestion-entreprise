@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\Organisation::factory()->create();
         //\App\Models\Mission::factory()->create();
+        //\App\Models\MissionLine::factory()->create();
     }
 }
