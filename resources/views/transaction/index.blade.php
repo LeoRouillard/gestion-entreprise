@@ -4,29 +4,25 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
-        <h2>Organisations</h2>
+        <h2>Transactions</h2>
         <table class="table">
             <thead>
                 <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Slug</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Tel</th>
-                <th scope="col">Address</th>
-                <th scope="col">Type</th>
+                <th scope="col">Source type</th>
+                <th scope="col">Source ID</th>
+                <th scope="col">Price</th>
+                <th scope="col">Paid At</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach($organisation as $org)
+            @foreach($transaction as $tr)
             <tr>
-                <th scope="row">{{$org->id}}</th>
-                <td>{{$org->slug}}</td>
-                <td>{{$org->name}}</td>
-                <td>{{$org->email}}</td>
-                <td>{{$org->tel}}</td>
-                <td>{{$org->address}}</td>
-                <td>{{$org->type}}</td>
+                <th scope="row">{{$tr->id}}</th>
+                <td>{{$tr->source_type}}</td>
+                <td>{{$tr->source_id}}</td>
+                <td>{{$tr->price}}</td>
+                <td>{{$tr->paid_at}}</td>
             </tr>
             @endforeach
             </tbody>

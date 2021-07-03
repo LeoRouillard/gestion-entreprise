@@ -4,29 +4,27 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
-        <h2>Organisations</h2>
+        <h2>Mission Lines</h2>
         <table class="table">
             <thead>
                 <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Slug</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Tel</th>
-                <th scope="col">Address</th>
-                <th scope="col">Type</th>
+                <th scope="col">Mission ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Unity</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach($organisation as $org)
+            @foreach($missionLine as $ml)
             <tr>
-                <th scope="row">{{$org->id}}</th>
-                <td>{{$org->slug}}</td>
-                <td>{{$org->name}}</td>
-                <td>{{$org->email}}</td>
-                <td>{{$org->tel}}</td>
-                <td>{{$org->address}}</td>
-                <td>{{$org->type}}</td>
+                <th scope="row">{{$ml->id}}</th>
+                <td>{{$ml->mission_id}}</td>
+                <td>{{$ml->title}}</td>
+                <td>{{$ml->quantity}}</td>
+                <td>{{$ml->price}}</td>
+                <td>{{$ml->unity}}</td>
             </tr>
             @endforeach
             </tbody>

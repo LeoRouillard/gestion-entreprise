@@ -14,7 +14,8 @@ class ContributionController extends Controller
      */
     public function index()
     {
-        //
+        $contributions = Contribution::query()->get();
+        return view('contribution.index', ['contribution' => $contributions]);
     }
 
     /**

@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\OrganisationController;
+use \App\Http\Controllers\MissionController;
+use \App\Http\Controllers\TransactionController;
+use \App\Http\Controllers\MissionLineController;
+use \App\Http\Controllers\ContributionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +23,11 @@ Route::get('/', function () {
 });
 
 Route::resource('organisations', OrganisationController::class);
+
+Route::resource('missions', MissionController::class);
+
+Route::resource('transactions', TransactionController::class);
+
+Route::resource('missionLines', MissionLineController::class);
+
+Route::resource('contributions', ContributionController::class);

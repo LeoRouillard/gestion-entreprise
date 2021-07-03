@@ -4,29 +4,25 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
-        <h2>Organisations</h2>
+        <h2>Contributions</h2>
         <table class="table">
             <thead>
                 <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Slug</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Tel</th>
-                <th scope="col">Address</th>
-                <th scope="col">Type</th>
+                <th scope="col">Price</th>
+                <th scope="col">Title</th>
+                <th scope="col">Comment</th>
+                <th scope="col">Organisation ID</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach($organisation as $org)
+            @foreach($contribution as $c)
             <tr>
-                <th scope="row">{{$org->id}}</th>
-                <td>{{$org->slug}}</td>
-                <td>{{$org->name}}</td>
-                <td>{{$org->email}}</td>
-                <td>{{$org->tel}}</td>
-                <td>{{$org->address}}</td>
-                <td>{{$org->type}}</td>
+                <th scope="row">{{$c->id}}</th>
+                <td>{{$c->price}}</td>
+                <td>{{$c->title}}</td>
+                <td>{{$c->comment}}</td>
+                <td>{{$c->organisation_id}}</td>
             </tr>
             @endforeach
             </tbody>

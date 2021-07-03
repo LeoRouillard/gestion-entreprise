@@ -14,7 +14,8 @@ class MissionController extends Controller
      */
     public function index()
     {
-        //
+        $missions = Mission::query()->get();
+        return view('mission.index', ['mission' => $missions]);
     }
 
     /**
