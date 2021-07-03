@@ -23,7 +23,8 @@ class TransactionFactory extends Factory
     {
         return [
             'source_type' => $this->faker->randomElement(['App\Models\Mission', 'App\Models\Contribution']),
-            'price' => $this->faker->randomNumber()
+            'price' => $this->faker->randomNumber(),
+            'paid_at' => $this->faker->date()
         ];
     }
 }

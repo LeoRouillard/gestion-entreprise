@@ -4,17 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Mission extends Model
 {
     use HasFactory;
 
-    public function organisation() {
+    public function organisation() : BelongsTo {
         return $this->belongsTo(Organisation::class);
     }
 
-    public function lines() {
+    public function lines() : HasMany {
         return $this->hasMany(MissionLine::class);
     }
 

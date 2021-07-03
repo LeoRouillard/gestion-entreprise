@@ -29,7 +29,14 @@ class DatabaseSeeder extends Seeder
                             ->count(4),
                         'lines'
                     )
+                    ->has(
+                        Transaction::factory()
+                        ->count(3)
+                    )
                     
+            )
+            ->has(
+                Contribution::factory()
             )
         ->create();
     }

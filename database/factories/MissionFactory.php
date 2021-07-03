@@ -25,7 +25,8 @@ class MissionFactory extends Factory
             'reference' => $this->faker->word(),
             'title' => $this->faker->text(),
             'comment' => $this->faker->text(),
-            'deposit' => $this->faker->randomNumber()
+            'deposit' => $this->faker->randomNumber(),
+            'ended_at' => $this->faker->date()
         ];
     }
 }
