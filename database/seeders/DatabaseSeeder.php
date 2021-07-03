@@ -29,9 +29,7 @@ class DatabaseSeeder extends Seeder
                             ->count(4),
                         'lines'
                     )
-               //     ->has(
-                 //       Transaction::factory()
-                  //  )
+                    
             )
         ->create();
     }

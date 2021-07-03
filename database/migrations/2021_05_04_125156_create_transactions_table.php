@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('price');
             $table->date('paid_at')->nullable();
             $table->date('created_at');
+            $table->date('updated_at');
         });
     }
 

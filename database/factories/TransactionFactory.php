@@ -22,7 +22,8 @@ class TransactionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'source_type' => $this->faker->randomElement(['App\Models\Mission', 'App\Models\Contribution']),
+            'price' => $this->faker->randomNumber()
         ];
     }
 }

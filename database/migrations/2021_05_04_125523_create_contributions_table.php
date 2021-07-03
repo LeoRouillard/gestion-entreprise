@@ -21,6 +21,7 @@ class CreateContributionsTable extends Migration
             $table->integer('organisation_id')->unsigned();
             $table->foreign('organisation_id')->references('id')->on('organisations');
             $table->date('created_at');
+            $table->date('updated_at');
         });
     }
 

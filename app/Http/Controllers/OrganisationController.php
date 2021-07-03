@@ -14,7 +14,8 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        //
+        $organisations = Organisation::query()->get();
+        return view('organisation.index', ['organisation' => $organisations]);
     }
 
     /**

@@ -22,7 +22,9 @@ class ContributionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'price' => $this->faker->randomNumber(),
+            'title' => $this->faker->text(),
+            'comment' => $this->faker->text()
         ];
     }
 }
