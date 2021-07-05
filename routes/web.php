@@ -6,6 +6,7 @@ use \App\Http\Controllers\MissionController;
 use \App\Http\Controllers\TransactionController;
 use \App\Http\Controllers\MissionLineController;
 use \App\Http\Controllers\ContributionController;
+use \App\Http\Controllers\SocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ use \App\Http\Controllers\ContributionController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::resource('organisations', OrganisationController::class);
 
@@ -31,3 +32,9 @@ Route::resource('transactions', TransactionController::class);
 Route::resource('missionLines', MissionLineController::class);
 
 Route::resource('contributions', ContributionController::class);
+
+Route::get('/google', [SocialiteController::class, 'loginRegister']);
+
+Route::get("redirect/{provider}", "SocialiteController@redirect")->name('socialite.redirect');
+Route::get('/redirect/{provider}', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
+Route::get('/callback/{provider}', [SocialiteController::class, 'callback'])->name('socialite.callback');
