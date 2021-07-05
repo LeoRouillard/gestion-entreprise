@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mission;
+use App\Models\Organisation;
+
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class MissionController extends Controller
 {
@@ -15,7 +18,8 @@ class MissionController extends Controller
     public function index()
     {
         $missions = Mission::query()->get();
-        return view('mission.index', ['mission' => $missions]);
+        $organisations = Organisation::query()->get();
+        return view('mission.index', ['mission' => $missions, 'organisations' => $organisations]);
     }
 
     /**
@@ -36,9 +40,29 @@ class MissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validatedData = $this->validate($request, [
+            'reference' => 'required',
+            'organisation_id' => 'required',
+            'title' => 'required',
+            'deposit' => 'required'
+        ]);
+        $mission = new Mission;
+        $mission->reference = $request->input('reference');
+        $mission->organisation_id = $request->input('organisation_id');
+        $mission->title = $request->input('title');
+        $mission->comment = $request->input('comment');
+        $mission->deposit = $request->input('deposit');
+        $mission->ended_at = $request->input('ended_at');
 
+        $m = $mission->save();
+        if($m) {
+            return redirect()->route('missions')->with('mess-success','Mission bien ajoutée !');
+        } else {
+            return redirect()->route('missions')->with('mess-error','Il y a une erreur');
+        }  
+
+    }
+    
     /**
      * Display the specified resource.
      *

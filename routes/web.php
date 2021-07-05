@@ -1,11 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\OrganisationController;
-use \App\Http\Controllers\MissionController;
-use \App\Http\Controllers\TransactionController;
-use \App\Http\Controllers\MissionLineController;
-use \App\Http\Controllers\ContributionController;
+
 use \App\Http\Controllers\SocialiteController;
 
 /*
@@ -23,17 +19,37 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::resource('organisations', OrganisationController::class);
+Route::resource('organisations', '\App\Http\Controllers\OrganisationController', [
+    'names' => [
+        'index' => 'organisations',
+    ]
+]);
 
-Route::resource('missions', MissionController::class);
+Route::resource('missions', '\App\Http\Controllers\MissionController', [
+    'names' => [
+        'index' => 'missions',
+    ]
+]);
 
-Route::resource('transactions', TransactionController::class);
+Route::resource('transactions', '\App\Http\Controllers\TransactionController', [
+    'names' => [
+        'index' => 'transactions',
+    ]
+]);
 
-Route::resource('missionLines', MissionLineController::class);
+Route::resource('missionLines', '\App\Http\Controllers\MissionLineController', [
+    'names' => [
+        'index' => 'missionLines',
+    ]
+]);
 
-Route::resource('contributions', ContributionController::class);
+Route::resource('contributions', '\App\Http\Controllers\ContributionController', [
+    'names' => [
+        'index' => 'contributions',
+    ]
+]);
 
-Route::get('/google', [SocialiteController::class, 'loginRegister']);
+Route::get('/google', [SocialiteController::class, 'loginRegister'])->name('google');
 
 Route::get("redirect/{provider}", "SocialiteController@redirect")->name('socialite.redirect');
 Route::get('/redirect/{provider}', [SocialiteController::class, 'redirect'])->name('socialite.redirect');

@@ -4,6 +4,17 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
+        @if(session()->has('mess-success'))
+            <div class="alert alert-success">
+                {{ session()->get('mess-success') }}
+            </div>
+        @endif
+        @if(session()->has('mess-error'))
+            <div class="alert alert-danger">
+                {{ session()->get('mess-error') }}
+            </div>
+        @endif
+        <a href="{{ route('home') }}" class="btn btn-danger">Retour</a>
         <h2>Missions</h2>
         <table class="table">
             <thead>
@@ -31,6 +42,29 @@
             @endforeach
             </tbody>
         </table>
+
+        <form action="{{ route('missions.store') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="reference">Entrez la référence : </label>
+                <input class="form-control" type="text" name="reference" id="reference">
+                <label for="title">Entrez le titre : </label>
+                <input class="form-control" type="text" name="title" id="title">
+                <label for="organisation_id">Choisir l'organisation :</label>
+                <select class="form-control" name="organisation_id" id="organisation_id">
+                    @foreach ( $organisations as $org )
+                        <option value="{{$org->id}}">{{$org->name}}</option>
+                    @endforeach
+                </select>
+                <label for="comment">Entrez un commentaire : </label>
+                <input class="form-control" type="text" name="comment" id="comment">
+                <label for="deposit">Entrez le dépôt : </label>
+                <input class="form-control" type="number" name="deposit" id="deposit">
+                <label for="ended_at">Entrez la date de fin : </label>
+                <input class="form-control" type="date" name="ended_at" id="ended_at">
+            </div>
+            <input type="submit" value="Ajouter" class="btn btn-primary">
+        </form>
     </body>
 </html>
 

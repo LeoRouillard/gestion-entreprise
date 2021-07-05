@@ -49,7 +49,12 @@ class OrganisationController extends Controller
         $organisation->address = $request->input('address');
         $organisation->type = $request->input('type');
 
-        $organisation->save();
+        $o = $organisation->save();
+        if($o) {
+            return redirect()->route('organisations')->with('mess-success','Organisation bien ajoutée !');
+        } else {
+            return redirect()->route('organisations')->with('mess-error','Il y a une erreur');
+        }
     }
 
     /**

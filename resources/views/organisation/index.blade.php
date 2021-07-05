@@ -5,6 +5,17 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
+        @if(session()->has('mess-success'))
+            <div class="alert alert-success">
+                {{ session()->get('mess-success') }}
+            </div>
+        @endif
+        @if(session()->has('mess-error'))
+            <div class="alert alert-danger">
+                {{ session()->get('mess-error') }}
+            </div>
+        @endif
+        <a href="{{ route('home') }}" class="btn btn-danger">Retour</a>
         <h2>Organisations</h2>
         <table class="table">
             <thead>
