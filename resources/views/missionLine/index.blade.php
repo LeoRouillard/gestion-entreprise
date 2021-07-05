@@ -4,6 +4,17 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
+        @if(session()->has('mess-success'))
+            <div class="alert alert-success">
+                {{ session()->get('mess-success') }}
+            </div>
+        @endif
+        @if(session()->has('mess-error'))
+            <div class="alert alert-danger">
+                {{ session()->get('mess-error') }}
+            </div>
+        @endif
+        <a href="{{ route('home') }}" class="btn btn-danger">Retour</a>
         <h2>Mission Lines</h2>
         <table class="table">
             <thead>
@@ -29,6 +40,32 @@
             @endforeach
             </tbody>
         </table>
+
+        <form action="{{ route('missionLines.store') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="title">Entrez le titre : </label>
+                <input class="form-control" type="text" name="title" id="title">
+                <label for="mission_id">Choisir la mission :</label>
+                <select class="form-control" name="mission_id" id="mission_id">
+                    @foreach ( $missions as $m )
+                        <option value="{{$m->id}}">{{$m->title}}</option>
+                    @endforeach
+                </select>
+                <label for="quantity">Entrez la quantité : </label>
+                <input class="form-control" type="number" name="quantity" id="quantity">
+                <label for="unity">Choisir l'unité : </label>
+                <select class="form-control" name="unity" id="unity">
+                    <option value="jours">Jours</option>
+                    <option value="semaine">Semaine</option>
+                    <option value="mois">Mois</option>
+                    <option value="ans">Ans</option>
+                </select>
+                <label for="price">Entrez le prix : </label>
+                <input class="form-control" type="number" name="price" id="price">
+            </div>
+            <input type="submit" value="Ajouter" class="btn btn-primary">
+        </form>
     </body>
 </html>
 

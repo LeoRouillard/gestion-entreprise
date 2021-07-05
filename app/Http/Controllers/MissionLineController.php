@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\MissionLine;
+use App\Models\Mission;
+
 use Illuminate\Http\Request;
 
 class MissionLineController extends Controller
@@ -15,7 +17,8 @@ class MissionLineController extends Controller
     public function index()
     {
         $missionLines = MissionLine::query()->get();
-        return view('missionLine.index', ['missionLine' => $missionLines]);
+        $missions = Mission::query()->get();
+        return view('missionLine.index', ['missionLine' => $missionLines, 'missions' => $missions]);
     }
 
     /**
@@ -36,7 +39,26 @@ class MissionLineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $this->validate($request, [
+            'title' => 'required',
+            'mission_id' => 'required',
+            'unity' => 'required',
+            'quantity' => 'required',
+            'price' => 'required'
+        ]);
+        $missionLine = new MissionLine;
+        $missionLine->mission_id = $request->input('mission_id');
+        $missionLine->title = $request->input('title');
+        $missionLine->quantity = $request->input('quantity');
+        $missionLine->price = $request->input('price');
+        $missionLine->unity = $request->input('unity');
+
+        $m = $missionLine->save();
+        if($m) {
+            return redirect()->route('missionLines')->with('mess-success','Mission Line bien ajoutée !');
+        } else {
+            return redirect()->route('missionLines')->with('mess-error','Il y a une erreur');
+        }  
     }
 
     /**
