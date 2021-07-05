@@ -36,7 +36,20 @@ class OrganisationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'slug' => 'required',
+            'address' => 'required'
+        ]);    
+        $organisation = new Organisation;
+        $organisation->slug = $request->input('slug');
+        $organisation->name = $request->input('name');
+        $organisation->email = $request->input('email');
+        $organisation->tel = $request->input('tel');
+        $organisation->address = $request->input('address');
+        $organisation->type = $request->input('type');
+
+        $organisation->save();
     }
 
     /**
@@ -53,7 +66,7 @@ class OrganisationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Organisation  $organisation
+     * @param  \App\Models\Organisation
      * @return \Illuminate\Http\Response
      */
     public function edit(Organisation $organisation)
