@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mission;
 use App\Models\Organisation;
+use App\Models\MissionLine;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -71,7 +72,12 @@ class MissionController extends Controller
      */
     public function show(Mission $mission)
     {
-        //
+        $missionLines = MissionLine::where('mission_id', $mission->id)->get();
+        $total = 0;
+        for ($line = 0; $line <= count($missionLines)-1; $line++) {
+            $total += $missionLines[$line]->price; 
+        }
+        return view('mission.devis', ['mission' => $mission, 'missionLines' => $missionLines, 'total' => $total]);
     }
 
     /**

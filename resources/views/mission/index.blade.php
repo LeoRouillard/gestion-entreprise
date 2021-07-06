@@ -26,6 +26,7 @@
                 <th scope="col">Comment</th>
                 <th scope="col">Deposit</th>
                 <th scope="col">Ended_at</th>
+                <th scope="col">Génération devis</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +39,7 @@
                 <td>{{$m->comment}}</td>
                 <td>{{$m->deposit}}</td>
                 <td>{{$m->ended_at}}</td>
+                <td><a href="{{route('devis', $m)}}">Génération</a></td>
             </tr>
             @endforeach
             </tbody>
@@ -50,7 +52,7 @@
                 <input class="form-control" type="text" name="reference" id="reference">
                 <label for="title">Entrez le titre : </label>
                 <input class="form-control" type="text" name="title" id="title">
-                <label for="organisation_id">Choisir l'organisation :</label>
+                <label for="organisation_id">Choisir l'entreprise :</label>
                 <select class="form-control" name="organisation_id" id="organisation_id">
                     @foreach ( $organisations as $org )
                         <option value="{{$org->id}}">{{$org->name}}</option>

@@ -28,6 +28,7 @@ Route::resource('organisations', '\App\Http\Controllers\OrganisationController',
 Route::resource('missions', '\App\Http\Controllers\MissionController', [
     'names' => [
         'index' => 'missions',
+        'show' => 'devis'
     ]
 ]);
 
