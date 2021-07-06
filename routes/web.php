@@ -16,7 +16,8 @@ use \App\Http\Controllers\SocialiteController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $user = Auth::user();
+    return view('welcome', ['user' => $user]);
 })->name('home');
 
 Route::resource('organisations', '\App\Http\Controllers\OrganisationController', [

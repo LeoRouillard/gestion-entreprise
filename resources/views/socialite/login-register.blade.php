@@ -1,3 +1,4 @@
+@include('header')
 <div class="container">
 	<h1>Se connecter ou s'enregistrer</h1>
 	<p>

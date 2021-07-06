@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
+        @include('header')
         @if(session()->has('mess-success'))
             <div class="alert alert-success">
                 {{ session()->get('mess-success') }}
@@ -14,7 +15,6 @@
                 {{ session()->get('mess-error') }}
             </div>
         @endif
-        <a href="{{ route('home') }}" class="btn btn-danger">Retour</a>
         <h2>Mission Lines</h2>
         <table class="table">
             <thead>

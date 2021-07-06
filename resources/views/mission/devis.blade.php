@@ -3,8 +3,8 @@
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
-    <body style="padding: 10px; margin: 10px;">
-        <a href="{{ route('missions') }}" class="btn btn-danger">Retour</a>
+    <body>
+        @include('header')
         <h2>Mission référence : {{$mission->reference}}</h2>
         <h4>Titre : {{$mission->title}}</h4>
         <br>

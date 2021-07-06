@@ -22,12 +22,16 @@
         </style>
     </head>
     <body class="antialiased">
-        <a href="{{ route('organisations') }}" class="btn btn-primary">Organisations</a>
-        <a href="{{ route('missions') }}" class="btn btn-primary">Missions</a>
-        <a href="{{ route('missionLines') }}" class="btn btn-primary">Mission Lines</a>
-        <a href="{{ route('transactions') }}" class="btn btn-primary">Transactions</a>
-        <a href="{{ route('contributions') }}" class="btn btn-primary">Contributions</a>
-        <a href="{{ route('google') }}" class="btn btn-primary">Connexion / Inscription</a>
+        @include('header')
+        <br>
+        <div style="text-align: center;">
+        @if($user)
+            <h2>Bonjour, {{$user->name}} vous êtes connecté !</h2>
+        @endif
+        @if(!$user)
+            <h2>Vous n'êtes pas connecté.</h2>
+        @endif
+        </div>
     </body>
 </html>
 
