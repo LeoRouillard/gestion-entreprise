@@ -23,7 +23,7 @@
                 <th scope="col">Organisation ID</th>
                 <th scope="col">Title</th>
                 <th scope="col">Comment</th>
-                <th scope="col">Deposit</th>
+                <th scope="col">Accompte</th>
                 <th scope="col">Ended_at</th>
                 </tr>
             </thead>
@@ -38,6 +38,7 @@
                 <td>{{$m->deposit}}</td>
                 <td>{{$m->ended_at}}</td>
                 <td><a class="btn btn-primary" href="{{ route('generateDevis', $m->id) }}">Devis</a></td>
+                <td><a class="btn btn-primary" href="{{ route('generateFacture', $m->id) }}">Facture</a></td>
                 <td>
                     <form action="{{ route('missions.destroy', $m->id) }}" method='POST'>
                         @csrf
@@ -45,6 +46,7 @@
                         <input type="submit" value="Supprimer" class="btn btn-danger">
                     </form>
                 </td>
+                <td><a class="btn btn-secondary" href="{{ route('missions.show', $m->id) }}">Modification</a></td>
             </tr>
             @endforeach
             </tbody>
@@ -66,7 +68,7 @@
                 </select>
                 <label for="comment">Entrez un commentaire : </label>
                 <input class="form-control" type="text" name="comment" id="comment">
-                <label for="deposit">Entrez le dépôt : </label>
+                <label for="deposit">Entrez le pourcentage d'accompte : </label>
                 <input class="form-control" type="number" name="deposit" id="deposit">
                 <label for="ended_at">Entrez la date de fin : </label>
                 <input class="form-control" type="date" name="ended_at" id="ended_at">

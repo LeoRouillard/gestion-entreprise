@@ -12,6 +12,8 @@ class Mission extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['reference', 'organisation_id', 'title', 'deposit', 'ended_at'];
+
     public function organisation() : BelongsTo {
         return $this->belongsTo(Organisation::class);
     }

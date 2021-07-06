@@ -30,10 +30,13 @@ Route::resource('organisations', '\App\Http\Controllers\OrganisationController',
 Route::resource('missions', '\App\Http\Controllers\MissionController', [
     'names' => [
         'index' => 'missions',
-        'destroy' => 'missions.destroy'
+        'destroy' => 'missions.destroy',
+        'show' => 'missions.show',
+        'update' => 'missions.update'
     ]
 ]);
 Route::get('/missions/devis/{id}', ['App\Http\Controllers\MissionController', 'generateDevis'])->name('generateDevis');
+Route::get('/missions/facture/{id}', ['App\Http\Controllers\MissionController', 'generateFacture'])->name('generateFacture');
 
 Route::resource('transactions', '\App\Http\Controllers\TransactionController', [
     'names' => [

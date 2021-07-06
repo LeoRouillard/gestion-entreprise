@@ -61,8 +61,7 @@ class MissionController extends Controller
             return redirect()->route('missions')->with('mess-success','Mission bien ajoutée !');
         } else {
             return redirect()->route('missions')->with('mess-error','Il y a une erreur');
-        }  
-
+        } 
     }
     
     /**
@@ -73,7 +72,8 @@ class MissionController extends Controller
      */
     public function show(Mission $mission)
     {
-        //
+        $organisations = Organisation::query()->get();
+        return view('mission.show', ['mission' => $mission, 'organisations' => $organisations]);
     }
 
     /**
@@ -94,9 +94,21 @@ class MissionController extends Controller
      * @param  \App\Models\Mission  $mission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mission $mission)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $this->validate($request, [
+            'reference' => 'required',
+            'organisation_id' => 'required',
+            'title' => 'required',
+            'deposit' => 'required'
+        ]);
+        $missionUpdate = Mission::find($id);
+        $m = $missionUpdate->update($request->all());
+        if($m) {
+            return redirect()->route('missions')->with('mess-success','Mission bien éditée !');
+        } else {
+            return redirect()->route('missions')->with('mess-error','Il y a une erreur');
+        } 
     }
 
     /**
@@ -122,7 +134,7 @@ class MissionController extends Controller
         $organisation = Organisation::where('id', $mission->organisation_id)->get();
         $total = 0;
         for ($line = 0; $line <= count($missionLines)-1; $line++) {
-            $total += $missionLines[$line]->price; 
+            $total += $missionLines[$line]->price * $missionLines[$line]->quantity; 
         }
         $data[0]->organisation = $organisation;
         $data[0]->missionLines = $missionLines;
@@ -131,7 +143,25 @@ class MissionController extends Controller
 
         view()->share('data',$data);
         $pdf = PDF::loadView('devis', $data);
-        return $pdf->download('devis.pdf');
+        return $pdf->download('devis.pdf');        
+    }
+
+    public function generateFacture($id) {
+        $data = [new \stdClass()];
+        $mission = Mission::find($id);
+        $missionLines = MissionLine::where('mission_id', $mission->id)->get();
+        $organisation = Organisation::where('id', $mission->organisation_id)->get();
+        $total = 0;
+        for ($line = 0; $line <= count($missionLines)-1; $line++) {
+            $total += $missionLines[$line]->price * $missionLines[$line]->quantity; 
+        }
+        $data[0]->organisation = $organisation;
+        $data[0]->missionLines = $missionLines;
+        $data[0]->mission = $mission;
+        $data[0]->total = $total;
         
+        view()->share('data',$data);
+        $pdf = PDF::loadView('facture', $data);
+        return $pdf->download('facture.pdf');        
     }
 }
