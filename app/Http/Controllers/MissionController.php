@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mission;
 use App\Models\Organisation;
 use App\Models\MissionLine;
+use PDF;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -72,12 +73,7 @@ class MissionController extends Controller
      */
     public function show(Mission $mission)
     {
-        $missionLines = MissionLine::where('mission_id', $mission->id)->get();
-        $total = 0;
-        for ($line = 0; $line <= count($missionLines)-1; $line++) {
-            $total += $missionLines[$line]->price; 
-        }
-        return view('mission.devis', ['mission' => $mission, 'missionLines' => $missionLines, 'total' => $total]);
+        //
     }
 
     /**
@@ -117,5 +113,25 @@ class MissionController extends Controller
         } else {
             return redirect()->route('missions')->with('mess-error','Il y a une erreur');
         }
+    }
+
+    public function generateDevis($id) {
+        $data = [new \stdClass()];
+        $mission = Mission::find($id);
+        $missionLines = MissionLine::where('mission_id', $mission->id)->get();
+        $organisation = Organisation::where('id', $mission->organisation_id)->get();
+        $total = 0;
+        for ($line = 0; $line <= count($missionLines)-1; $line++) {
+            $total += $missionLines[$line]->price; 
+        }
+        $data[0]->organisation = $organisation;
+        $data[0]->missionLines = $missionLines;
+        $data[0]->mission = $mission;
+        $data[0]->total = $total;
+
+        view()->share('data',$data);
+        $pdf = PDF::loadView('devis', $data);
+        return $pdf->download('devis.pdf');
+        
     }
 }

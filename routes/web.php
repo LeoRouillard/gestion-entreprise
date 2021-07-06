@@ -30,10 +30,10 @@ Route::resource('organisations', '\App\Http\Controllers\OrganisationController',
 Route::resource('missions', '\App\Http\Controllers\MissionController', [
     'names' => [
         'index' => 'missions',
-        'show' => 'devis',
         'destroy' => 'missions.destroy'
     ]
 ]);
+Route::get('/missions/devis/{id}', ['App\Http\Controllers\MissionController', 'generateDevis'])->name('generateDevis');
 
 Route::resource('transactions', '\App\Http\Controllers\TransactionController', [
     'names' => [

@@ -4,11 +4,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
-        @include('header')
-        <h2>Mission référence : {{$mission->reference}}</h2>
-        <h4>Titre : {{$mission->title}}</h4>
+        <h2>Mission référence : {{$data[0]->mission->reference}}</h2>
+        <h4>Titre : {{$data[0]->mission->title}}</h4>
         <br>
-        Accompte : {{$mission->deposit}}
+        Accompte : {{$data[0]->mission->deposit}}
         
         <table class="table">
             <thead>
@@ -19,17 +18,17 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($missionLines as $ml)
-            <tr>
-                <td>{{$ml->title}}</td>
-                <td>{{$ml->quantity}} {{$ml->unity}}</td>
-                <td>{{$ml->price}} €</td>
-            </tr>
-            @endforeach
+                @foreach($data[0]->missionLines as $ml)
+                <tr>
+                    <td>{{$ml->title}}</td>
+                    <td>{{$ml->quantity}} {{$ml->unity}}</td>
+                    <td>{{$ml->price}} €</td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
 
-        <p style="float:right">Total : {{$total}} €</p>
+        <p style="float:right">Total : {{$data[0]->total}} €</p>
         
     </body>
 </html>

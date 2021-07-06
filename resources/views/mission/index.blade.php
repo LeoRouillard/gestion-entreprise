@@ -25,7 +25,6 @@
                 <th scope="col">Comment</th>
                 <th scope="col">Deposit</th>
                 <th scope="col">Ended_at</th>
-                <th scope="col">Génération devis</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +37,7 @@
                 <td>{{$m->comment}}</td>
                 <td>{{$m->deposit}}</td>
                 <td>{{$m->ended_at}}</td>
-                <td><a href="{{route('devis', $m)}}">Génération</a></td>
+                <td><a class="btn btn-primary" href="{{ route('generateDevis', $m->id) }}">Devis</a></td>
                 <td>
                     <form action="{{ route('missions.destroy', $m->id) }}" method='POST'>
                         @csrf
