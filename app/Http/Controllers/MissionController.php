@@ -159,7 +159,8 @@ class MissionController extends Controller
         $data[0]->missionLines = $missionLines;
         $data[0]->mission = $mission;
         $data[0]->total = $total;
-        
+        $data[0]->paiement = $total * $mission->deposit / 100;
+
         view()->share('data',$data);
         $pdf = PDF::loadView('facture', $data);
         return $pdf->download('facture.pdf');        

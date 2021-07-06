@@ -14,8 +14,6 @@
         <h2>Mission : {{$data[0]->mission->title}}</h2>
         <br>
         <h2>Référence : {{$data[0]->mission->reference}}</h2>
-        <br>
-        Accompte : {{$data[0]->mission->deposit}}
         <br><br>
         <table class="table">
             <thead>
@@ -39,6 +37,10 @@
         </table>
 
         <p style="float:right">Total : {{$data[0]->total}} €</p>
+        <br>
+        <p>Accompte : {{$data[0]->mission->deposit}} %</p>
+        <p>Montant à payer maintenant : {{$data[0]->paiement}} €</p>
+
         
     </body>
 </html>
