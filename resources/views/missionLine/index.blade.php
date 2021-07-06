@@ -15,7 +15,6 @@
                 {{ session()->get('mess-error') }}
             </div>
         @endif
-        <h2>Mission Lines</h2>
         <table class="table">
             <thead>
                 <tr>
@@ -36,12 +35,20 @@
                 <td>{{$ml->quantity}}</td>
                 <td>{{$ml->price}}</td>
                 <td>{{$ml->unity}}</td>
+                <td>
+                    <form action="{{ route('missionLines.destroy', $ml->id) }}" method='POST'>
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="Supprimer" class="btn btn-danger">
+                    </form>
+                </td>
             </tr>
             @endforeach
             </tbody>
         </table>
 
-        <form action="{{ route('missionLines.store') }}" method="POST">
+        <h3 style="text-align:center">Ajouter une mission line</h3>
+        <form action="{{ route('missionLines.store') }}" method="POST" style="margin:10px;padding:10px">
             @csrf
             <div class="form-group">
                 <label for="title">Entrez le titre : </label>

@@ -99,6 +99,11 @@ class OrganisationController extends Controller
      */
     public function destroy(Organisation $organisation)
     {
-        //
+        $o = $organisation->destroy($organisation->id);
+        if($o) {
+            return redirect()->route('organisations')->with('mess-success','Organisation bien supprimée !');
+        } else {
+            return redirect()->route('organisations')->with('mess-error','Il y a une erreur');
+        }
     }
 }

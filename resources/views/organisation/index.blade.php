@@ -15,7 +15,6 @@
                 {{ session()->get('mess-error') }}
             </div>
         @endif
-        <h2>Organisations</h2>
         <table class="table">
             <thead>
                 <tr>
@@ -38,12 +37,20 @@
                 <td>{{$org->tel}}</td>
                 <td>{{$org->address}}</td>
                 <td>{{$org->type}}</td>
+                <td>
+                    <form action="{{ route('organisations.destroy', $org->id) }}" method='POST'>
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="Supprimer" class="btn btn-danger">
+                    </form>
+                </td>
             </tr>
             @endforeach
             </tbody>
         </table>
 
-        <form action="{{ route('organisations.store') }}" method="POST">
+        <h3 style="text-align:center">Ajouter une organisation</h3>
+        <form action="{{ route('organisations.store') }}" method="POST" style="margin:10px;padding:10px">
             @csrf
             <div class="form-group">
                 <label for="slug">Entrez le slug : </label>

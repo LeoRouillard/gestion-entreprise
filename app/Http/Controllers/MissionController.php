@@ -111,6 +111,11 @@ class MissionController extends Controller
      */
     public function destroy(Mission $mission)
     {
-        //
+        $m = $mission->destroy($mission->id);
+        if($m) {
+            return redirect()->route('missions')->with('mess-success','Mission bien supprimée !');
+        } else {
+            return redirect()->route('missions')->with('mess-error','Il y a une erreur');
+        }
     }
 }

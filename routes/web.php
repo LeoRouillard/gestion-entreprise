@@ -23,13 +23,15 @@ Route::get('/', function () {
 Route::resource('organisations', '\App\Http\Controllers\OrganisationController', [
     'names' => [
         'index' => 'organisations',
+        'destroy' => 'organisations.destroy'
     ]
 ]);
 
 Route::resource('missions', '\App\Http\Controllers\MissionController', [
     'names' => [
         'index' => 'missions',
-        'show' => 'devis'
+        'show' => 'devis',
+        'destroy' => 'missions.destroy'
     ]
 ]);
 
@@ -42,6 +44,7 @@ Route::resource('transactions', '\App\Http\Controllers\TransactionController', [
 Route::resource('missionLines', '\App\Http\Controllers\MissionLineController', [
     'names' => [
         'index' => 'missionLines',
+        'destroy' => 'missionLines.destroy'
     ]
 ]);
 

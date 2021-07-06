@@ -15,7 +15,6 @@
                 {{ session()->get('mess-error') }}
             </div>
         @endif
-        <h2>Missions</h2>
         <table class="table">
             <thead>
                 <tr>
@@ -40,12 +39,20 @@
                 <td>{{$m->deposit}}</td>
                 <td>{{$m->ended_at}}</td>
                 <td><a href="{{route('devis', $m)}}">Génération</a></td>
+                <td>
+                    <form action="{{ route('missions.destroy', $m->id) }}" method='POST'>
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="Supprimer" class="btn btn-danger">
+                    </form>
+                </td>
             </tr>
             @endforeach
             </tbody>
         </table>
 
-        <form action="{{ route('missions.store') }}" method="POST">
+        <h3 style="text-align:center">Ajouter une mission</h3>
+        <form action="{{ route('missions.store') }}" method="POST" style="margin:10px;padding:10px">
             @csrf
             <div class="form-group">
                 <label for="reference">Entrez la référence : </label>

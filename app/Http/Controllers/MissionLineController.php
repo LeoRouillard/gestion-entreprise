@@ -103,6 +103,11 @@ class MissionLineController extends Controller
      */
     public function destroy(MissionLine $missionLine)
     {
-        //
+        $ml = $missionLine->destroy($missionLine->id);
+        if($ml) {
+            return redirect()->route('missionLines')->with('mess-success','Mission Line bien supprimée !');
+        } else {
+            return redirect()->route('missionLines')->with('mess-error','Il y a une erreur');
+        }
     }
 }
